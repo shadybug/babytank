@@ -1,4 +1,5 @@
 int ledPin = 2; // pin for LED
+int ledPinTwo = 12; // pin for second LED
 
 int leftEnable = 3; // pin to activate left motor
 int leftLegOne = 4; // left motor leg 1
@@ -79,6 +80,10 @@ void loop() {
     // right motor forward
     digitalWrite(rightLegTwo, LOW);
     digitalWrite(rightLegOne, HIGH);
+
+    // turn LEDs on
+    digitalWrite(ledPin, HIGH);
+    digitalWrite(ledPinTwo, HIGH);
     
     // silence buzzer
     analogWrite(buzzPin, 0);
@@ -94,19 +99,21 @@ void loop() {
     digitalWrite(rightLegTwo, HIGH);
     digitalWrite(rightLegOne, LOW);
     
-    // led blink, buzzer beep
+    // led alternate blink, buzzer beep
     if (blink < 1){
       blink++;
     }
     if (blink >= 1){
       if (blinkOn == false){
         digitalWrite(ledPin, HIGH);
+        digitalWrite(ledPinTwo, LOW);
         analogWrite(buzzPin, 130);
         blink = 0;
         blinkOn = true;
       }
       else{
         digitalWrite(ledPin, LOW);
+        digitalWrite(ledPinTwo, HIGH);
         analogWrite(buzzPin, 0);
         blink = 0;
         blinkOn = false;
